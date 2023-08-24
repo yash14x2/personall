@@ -28,6 +28,7 @@ export default function decorate(block) {
   // Add event listeners for carousel navigation buttons
   const prevBtn = document.createElement('button');
   prevBtn.textContent = 'Previous';
+  prevBtn.className = 'carousel-button'; // Add the carousel button class
   prevBtn.addEventListener('click', () => {
     currentIndex = Math.max(currentIndex - 1, 0);
     moveCarousel();
@@ -35,6 +36,7 @@ export default function decorate(block) {
 
   const nextBtn = document.createElement('button');
   nextBtn.textContent = 'Next';
+  nextBtn.className = 'carousel-button'; // Add the carousel button class
   nextBtn.addEventListener('click', () => {
     currentIndex = Math.min(currentIndex + 1, cards.length - 1);
     moveCarousel();
