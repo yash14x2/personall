@@ -1,52 +1,33 @@
 const body = document.body;
 
 // Create Carousel Container
-const carouselContainer = document.createElement('div');
-carouselContainer.id = 'carousel';
-carouselContainer.classList.add('carousel'); // Add carousel class for styling
-body.appendChild(carouselContainer);
+const container = document.createElement('div');
+container.style.overflow = 'hidden'; // Add overflow hidden to prevent items from overflowing
+container.style.display = 'flex';
+container.style.flexDirection = 'column';
+container.style.alignItems = 'center';
+container.style.justifyContent = 'center';
+body.appendChild(container);
 
-// Create Previous Button
-const prevButton = document.createElement('button');
-prevButton.id = 'prevBtn';
-prevButton.textContent = 'Previous';
-body.appendChild(prevButton);
+// Create Carousel Wrapper
+const carouselWrapper = document.createElement('div'); // Add an additional wrapper
+carouselWrapper.style.overflow = 'hidden'; // Hide the overflow of the wrapper
+carouselWrapper.appendChild(container); // Add the existing container to the wrapper
+body.appendChild(carouselWrapper); // Append the wrapper to the body
 
-// Create Next Button
-const nextButton = document.createElement('button');
-nextButton.id = 'nextBtn';
-nextButton.textContent = 'Next';
-body.appendChild(nextButton);
-
-const items = [
-  { text: 'Item 1' },
-  { text: 'Item 2' },
-  { text: 'Item 3' },
-  // Add more items as needed
-];
-
-let currentItem = 0;
-
-function createCarouselItem(item) {
-  const itemElement = document.createElement('div');
-  itemElement.classList.add('carousel-item');
-  itemElement.textContent = item.text;
-  return itemElement;
-}
+// ... (rest of your code)
 
 function updateCarousel() {
-  carouselContainer.innerHTML = '';
+  // ... (existing code)
 
-  for (let i = 0; i < items.length; i++) {
-    const item = createCarouselItem(items[i]);
-    carouselContainer.appendChild(item);
-  }
-
- carouselContainer.style.width = `${items.length * 100}%`;
-  carouselContainer.style.transition = 'transform 0.3s ease-in-out'; // Add transition property
+  carouselContainer.style.width = `${items.length * 100}%`;
+  carouselContainer.style.transition = 'transform 0.3s ease-in-out';
   carouselContainer.style.transform = `translateX(-${currentItem * (100 / items.length)}%)`;
 }
 
+// ... (rest of your code)
+
+// Modify your event listeners to also update the transform of the carouselWrapper
 prevButton.addEventListener('click', () => {
   if (currentItem > 0) {
     currentItem--;
