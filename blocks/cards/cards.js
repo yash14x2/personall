@@ -42,8 +42,10 @@ function updateCarousel() {
     carouselContainer.appendChild(item);
   }
 
-  carouselContainer.style.width = `${items.length * 100}%`;
+ carouselContainer.style.width = `${items.length * 100}%`;
+  carouselContainer.style.transition = 'transform 0.3s ease-in-out'; // Add transition property
   carouselContainer.style.transform = `translateX(-${currentItem * (100 / items.length)}%)`;
+
 }
 
 prevButton.addEventListener('click', () => {
