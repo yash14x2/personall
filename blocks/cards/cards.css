@@ -2,7 +2,7 @@
   display: flex;
   overflow: hidden;
   width: 300px; /* Adjust as needed */
- 
+  justify-content: center;
   
 }
 
