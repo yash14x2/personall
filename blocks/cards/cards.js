@@ -1,29 +1,22 @@
 const body = document.body;
 
 // Create Carousel Container
-const container = document.createElement('div');
-container.style.display = 'flex';
-container.style.flexDirection = 'column';
-container.style.alignItems = 'center';
-container.style.justifyContent = 'center';
-body.appendChild(container);
-
-// Create Previous Button
 const carouselContainer = document.createElement('div');
 carouselContainer.id = 'carousel';
 carouselContainer.classList.add('carousel'); // Add carousel class for styling
-container.appendChild(carouselContainer);
+body.appendChild(carouselContainer);
 
-// Create Next Button
+// Create Previous Button
 const prevButton = document.createElement('button');
 prevButton.id = 'prevBtn';
 prevButton.textContent = 'Previous';
-container.appendChild(prevButton);
+body.appendChild(prevButton);
 
+// Create Next Button
 const nextButton = document.createElement('button');
 nextButton.id = 'nextBtn';
 nextButton.textContent = 'Next';
-container.appendChild(nextButton);
+body.appendChild(nextButton);
 
 const items = [
   { text: 'Item 1' },
@@ -52,7 +45,6 @@ function updateCarousel() {
  carouselContainer.style.width = `${items.length * 100}%`;
   carouselContainer.style.transition = 'transform 0.3s ease-in-out'; // Add transition property
   carouselContainer.style.transform = `translateX(-${currentItem * (100 / items.length)}%)`;
-
 }
 
 prevButton.addEventListener('click', () => {
