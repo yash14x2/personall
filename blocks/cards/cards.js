@@ -10,13 +10,13 @@ body.appendChild(carouselContainer);
 const prevButton = document.createElement('button');
 prevButton.id = 'prevBtn';
 prevButton.textContent = 'Previous';
-carouselContainer.appendChild(prevButton);
+body.appendChild(prevButton);
 
 // Create Next Button
 const nextButton = document.createElement('button');
 nextButton.id = 'nextBtn';
 nextButton.textContent = 'Next';
-carouselContainer.appendChild(nextButton);
+body.appendChild(nextButton);
 
 const items = [
   { text: 'Item 1' },
