@@ -1,10 +1,10 @@
-  .carousel {
-      display: flex;
-      overflow: hidden;
-      width: 300px; /* Adjust as needed */
-    }
+.carousel {
+  display: flex;
+  overflow: hidden;
+  width: 300px; /* Adjust as needed */
+}
 
-    .carousel-item {
-      flex: 0 0 100%;
-      transition: transform 0.3s ease-in-out;
-    }
+.carousel-item {
+  flex: 0 0 calc(100% / 3); /* Adjust based on the number of items */
+  transition: transform 0.3s ease-in-out;
+}
