@@ -1,49 +1,61 @@
-import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
+const body = document.body;
 
-export default function decorate(block) {
-  /* Change to ul, li */
-  const ul = document.createElement('ul');
-  ul.classList.add('carousel'); // Add a class for styling and JavaScript selection
-  let currentIndex = 0;
+    // Create Carousel Container
+    const carouselContainer = document.createElement('div');
+    carouselContainer.id = 'carousel';
+    body.appendChild(carouselContainer);
 
-  [...block.children].forEach((row) => {
-    const li = document.createElement('li');
-    while (row.firstElementChild) li.append(row.firstElementChild);
-    li.className = 'carousel-card'; // Set a class for carousel card styling
-    ul.append(li);
-  });
+    // Create Previous Button
+    const prevButton = document.createElement('button');
+    prevButton.id = 'prevBtn';
+    prevButton.textContent = 'Previous';
+    body.appendChild(prevButton);
 
-  ul.querySelectorAll('img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
-  block.textContent = '';
-  block.append(ul);
+    // Create Next Button
+    const nextButton = document.createElement('button');
+    nextButton.id = 'nextBtn';
+    nextButton.textContent = 'Next';
+    body.appendChild(nextButton);
 
-  const cards = ul.querySelectorAll('.carousel-card');
-  const cardWidth = cards[0].offsetWidth; // Assuming all cards have the same width
+    const items = [
+      { text: 'Item 1' },
+      { text: 'Item 2' },
+      { text: 'Item 3' },
+      // Add more items as needed
+    ];
 
-  function moveCarousel() {
-    const offset = -currentIndex * cardWidth;
-    ul.style.transform = `translateX(${offset}px)`;
-  }
+    let currentItem = 0;
 
-  // Add event listeners for carousel navigation buttons
-  const prevBtn = document.createElement('button');
-  prevBtn.textContent = 'Previous';
-  prevBtn.className = 'carousel-button'; // Add the carousel button class
-  prevBtn.addEventListener('click', () => {
-    currentIndex = Math.max(currentIndex - 1, 0);
-    moveCarousel();
-  });
+    function createCarouselItem(item) {
+      const itemElement = document.createElement('div');
+      itemElement.classList.add('carousel-item');
+      itemElement.textContent = item.text;
+      return itemElement;
+    }
 
-  const nextBtn = document.createElement('button');
-  nextBtn.textContent = 'Next';
-  nextBtn.className = 'carousel-button'; // Add the carousel button class
-  nextBtn.addEventListener('click', () => {
-    currentIndex = Math.min(currentIndex + 1, cards.length - 1);
-    moveCarousel();
-  });
+    function updateCarousel() {
+      carouselContainer.innerHTML = '';
 
-  block.append(prevBtn);
-  block.append(nextBtn);
+      for (let i = 0; i < items.length; i++) {
+        const item = createCarouselItem(items[i]);
+        carouselContainer.appendChild(item);
+      }
 
-  moveCarousel(); // Initial position
-}
+      carouselContainer.style.transform = `translateX(-${currentItem * 100}%)`;
+    }
+
+    prevButton.addEventListener('click', () => {
+      if (currentItem > 0) {
+        currentItem--;
+        updateCarousel();
+      }
+    });
+
+    nextButton.addEventListener('click', () => {
+      if (currentItem < items.length - 1) {
+        currentItem++;
+        updateCarousel();
+      }
+    });
+
+    updateCarousel();
