@@ -2,13 +2,9 @@
   display: flex;
   overflow: hidden;
   width: 300px; /* Adjust as needed */
-  justify-content: center;
-  
 }
 
 .carousel-item {
-    display: flex;
-    justify-content: center;
-    flex: 0 0 calc(100% / 3);
-    transition: transform 0.3s ease-in-out;
+  flex: 0 0 calc(100% / 3); /* Adjust based on the number of items */
+  transition: transform 0.3s ease-in-out;
 }
